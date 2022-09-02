@@ -13,11 +13,14 @@ char	**parse_map(char *map)
 	if(strcmp(&map[i], ".ber") != 0)
 		return (0);
 	fd = open(map, O_RDWR);
-	tmp = malloc(1 * sizeof(char));
+	tmp = malloc(1);
 	mp = malloc(1);
+	if(fd < 0 || !(tmp) || !(mp))
+		return 0;
 	while(read(fd,tmp,1))
 	{
 		mp = ft_strjoin(mp,tmp);
+		//printf("%s",tmp);
 		free(tmp);
 		tmp = malloc(1);
 	}
@@ -54,7 +57,6 @@ int	valid_line(char *map)
 	i = 0;
 	while(map[i])
 	{
-		//printf("%c\n",map[i]);
 		if(map[i] == '1')
 			i++;
 		else
@@ -82,22 +84,44 @@ int	valid_wall(game_info *game)
 	valid_line(game->map[i]);
 	return 0;
 }
+// int valid_char(game_info *game)
+// {
+// 	int i;
+// 	int j;
+
+// 	i = 0;
+// 	while(game->map[i])
+// 	{
+// 		j = 0;
+// 		while(game->map[i][j])
+// 		{
+			
+// 		}
+// 		i++;
+// 	}
+// }
 void	valid_map(game_info *game)
 {
 	valid_rec(game);
 	valid_wall(game);
-	valid_char(game);
+	//valid_char(game);
 }
 int	main(int ac, char **av)
 {
 	game_info game;
+	//void *mlx;
+	//void *mlx_win;
+
 	int i;
 	i = 0;
 	if(ac == 2)
 	{
 		if(!(game.map = parse_map(av[1])))
-			return (write(1 , "extension error\n",16));
-		valid_map(&game);
+			return (write(1 , "Error\n",7));
+		//printf("%s",game.map[0]);
+		//valid_map(&game);
+		//mlx = mlx_init();
+		//mlx_win = mlx_new_window(mlx, 1080, 1050, "test");
 	}
 	else
 		write(1, "arguments error \n", 17);

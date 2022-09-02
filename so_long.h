@@ -5,12 +5,13 @@
 #include <stdio.h>
 #include <unistd.h> 
 #include <string.h>
-#include<fcntl.h>
+#include <fcntl.h>
 #include <stdlib.h>
 
 typedef struct game
 {
     char **map;
+    
 }game_info;
 
 char	**ft_split(const char *s, char c);
