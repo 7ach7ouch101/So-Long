@@ -130,6 +130,7 @@ void	valid_map(game_info *game)
 int	main(int ac, char **av)
 {
 	game_info game;
+	t_assets ass;
 	void *mlx;
 	void *mlx_win;
 
@@ -139,9 +140,9 @@ int	main(int ac, char **av)
 			return (write(1 , "Error\n",7));
 		valid_map(&game);
 		mlx = mlx_init();
-		mlx_win = mlx_new_window(mlx, 56 * game.height, 56 * game.width, "test");
-		loading(&mlx);
-		rendreing(&mlx, &mlx_win, &game);
+		mlx_win = mlx_new_window(mlx, 60 * strlen(game.map[0]), 60 * 6, "test");
+		loading(mlx, &ass);
+		rendreing(mlx, mlx_win, &game, &ass);
 		mlx_loop(mlx);
 	}
 	else
