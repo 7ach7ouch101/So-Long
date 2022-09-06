@@ -132,10 +132,6 @@ int	main(int ac, char **av)
 	game_info game;
 	void *mlx;
 	void *mlx_win;
-	void	*img;
-	char	*relative_path = "./test.png";
-	int		*img_width = 0;
-	int		*img_height = 0;
 
 	if(ac == 2)
 	{
@@ -143,9 +139,9 @@ int	main(int ac, char **av)
 			return (write(1 , "Error\n",7));
 		valid_map(&game);
 		mlx = mlx_init();
-		mlx_win = mlx_new_window(mlx, 1080, 1050, "test");
-		img = mlx_png_file_to_image(mlx, relative_path, &img_width, &img_height);
-		mlx_put_image_to_window(mlx, mlx_win, img, img_width, img_height);
+		mlx_win = mlx_new_window(mlx, 56 * game.height, 56 * game.width, "test");
+		loading(&mlx);
+		rendreing(&mlx, &mlx_win, &game);
 		mlx_loop(mlx);
 	}
 	else

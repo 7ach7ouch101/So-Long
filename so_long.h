@@ -11,8 +11,19 @@
 typedef struct game
 {
     char **map;
+    int height;
+    int width;
     
 }game_info;
+
+typedef struct assets
+{
+    void *wall;
+    void *player;
+    void *coin;
+    void *door;
+}assets;
+
 
 char	**ft_split(const char *s, char c);
 char	*ft_strjoin(char *s1, char *s2);

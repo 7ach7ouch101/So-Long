@@ -1,4 +1,5 @@
 #include "so_long.h"
+
 static int	words(const char *str, char c)
 {
 	int	i;
