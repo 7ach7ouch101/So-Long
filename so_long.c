@@ -49,6 +49,8 @@ int valid_rec(game_info *game)
 			return (write(1, "map is not rectangular\n",23));
 		i++;
 	}
+	game->height = i;
+	game->width = j;
 	return (0);
 }
 int	valid_line(char *map)
@@ -127,12 +129,19 @@ void	valid_map(game_info *game)
 	valid_wall(game);
 	valid_char(game, C, E, P);
 }
+int	test(int key)
+{
+	if(key == 1)
+		printf("TEST");
+	return 0;
+}
 int	main(int ac, char **av)
 {
 	game_info game;
 	t_assets ass;
 	void *mlx;
 	void *mlx_win;
+	void *param;
 
 	if(ac == 2)
 	{
@@ -140,9 +149,10 @@ int	main(int ac, char **av)
 			return (write(1 , "Error\n",7));
 		valid_map(&game);
 		mlx = mlx_init();
-		mlx_win = mlx_new_window(mlx, 60 * strlen(game.map[0]), 60 * 6, "test");
+		mlx_win = mlx_new_window(mlx, 60 * game.width, 60 * game.height, "test");
 		loading(mlx, &ass);
 		rendreing(mlx, mlx_win, &game, &ass);
+		mlx_key_hook(mlx_win, test, &param);
 		mlx_loop(mlx);
 	}
 	else

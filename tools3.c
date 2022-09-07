@@ -11,6 +11,7 @@ void    loading(void *mlx, t_assets *ass)
     ass->wall = mlx_xpm_file_to_image(mlx, "./wall.xpm", &img_width, &img_height);
     ass->door = mlx_xpm_file_to_image(mlx, "./door.xpm", &img_width, &img_height);
     ass->player = mlx_xpm_file_to_image(mlx, "./player.xpm", &img_width, &img_height);
+    ass->floor = mlx_xpm_file_to_image(mlx, "./floor.xpm", &img_width, &img_height);
 }
 
 void rendreing(void *mlx, void *mlx_win, game_info *game, t_assets *ass)
@@ -32,6 +33,8 @@ void rendreing(void *mlx, void *mlx_win, game_info *game, t_assets *ass)
                 mlx_put_image_to_window(mlx, mlx_win, ass->player, j * 60, i * 60);
             else if(game->map[i][j] == 'E')
                 mlx_put_image_to_window(mlx, mlx_win, ass->door, j * 60, i * 60);
+            else
+                mlx_put_image_to_window(mlx, mlx_win, ass->floor, j * 60, i * 60);
             j++;
         }
         i++;

@@ -22,6 +22,7 @@ typedef struct s_assets
     void *player;
     void *coin;
     void *door;
+    void *floor;
 }t_assets;
 
 
