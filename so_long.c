@@ -129,31 +129,58 @@ void	valid_map(game_info *game)
 	valid_wall(game);
 	valid_char(game, C, E, P);
 }
-int	test(int key)
+int	test(int key, game_info *game, t_assets *ass)
 {
-	if(key == 1)
-		printf("TEST");
-	return 0;
+	int i;
+	int j;
+
+	i = 0;
+	if(key == 53)
+	{
+		mlx_destroy_window(game->mlx, game->mlx_win);
+		exit(0);
+	}
+	if (key == 13)
+	{
+		while(game->map[i])
+		{
+			j = 0;
+			while(game->map[i][j])
+			{
+				if(game->map[i][j] == 'P')
+				{
+					game->map[i][j] = '0';
+					game->map[i][j + 1] = 'P';
+					break ;
+				}
+				j++;
+			}
+			i++;
+		}
+	}
+	if(key == 13)
+	{
+		mlx_clear_window(game->mlx, game->mlx_win);
+		rendreing(game,ass);
+	}
+	return (0);
 }
 int	main(int ac, char **av)
 {
 	game_info game;
 	t_assets ass;
-	void *mlx;
-	void *mlx_win;
-	void *param;
 
 	if(ac == 2)
 	{
 		if(!(game.map = parse_map(av[1])))
 			return (write(1 , "Error\n",7));
 		valid_map(&game);
-		mlx = mlx_init();
-		mlx_win = mlx_new_window(mlx, 60 * game.width, 60 * game.height, "test");
-		loading(mlx, &ass);
-		rendreing(mlx, mlx_win, &game, &ass);
-		mlx_key_hook(mlx_win, test, &param);
-		mlx_loop(mlx);
+		game.mlx = mlx_init();
+		game.mlx_win = mlx_new_window(game.mlx, 60 * game.width, 60 * game.height, "test");
+		loading(game.mlx, &ass,);
+		rendreing(&game, &ass);
+		mlx_hook(game.mlx_win,02,0,&test ,&game);
+		mlx_loop(game.mlx);
 	}
 	else
 		write(1, "arguments error \n", 17);

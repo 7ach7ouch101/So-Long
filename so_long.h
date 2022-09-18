@@ -13,7 +13,8 @@ typedef struct game
     char **map;
     int height;
     int width;
-
+    void *mlx;
+	void *mlx_win;
 }game_info;
 
 typedef struct s_assets
@@ -29,7 +30,7 @@ typedef struct s_assets
 char	**ft_split(const char *s, char c);
 char	*ft_strjoin(char *s1, char *s2);
 void    loading(void *mlx, t_assets *ass);
-void    rendreing(void *mlx, void *mlx_win, game_info *game, t_assets *ass);
+void    rendreing(game_info *game, t_assets *ass);
 
 
 
