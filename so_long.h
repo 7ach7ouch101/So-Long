@@ -13,6 +13,8 @@ typedef struct game
     char **map;
     int height;
     int width;
+    int movements;
+    int coins;
     void *mlx;
 	void *mlx_win;
 }game_info;
@@ -31,7 +33,7 @@ char	**ft_split(const char *s, char c);
 char	*ft_strjoin(char *s1, char *s2);
 void    loading(void *mlx, t_assets *ass);
 void    rendreing(game_info *game, t_assets *ass);
-
-
+char	**parse_map(char *map);
+void	valid_map(game_info *game);
 
 #endif

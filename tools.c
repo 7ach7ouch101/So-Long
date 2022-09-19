@@ -50,5 +50,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!p)
 		return (NULL);
 	p = merge(s1, s2, p);
+	//free (s1);
 	return (p);
 }
