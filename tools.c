@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tools.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmeziani <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/24 20:35:50 by mmeziani          #+#    #+#             */
+/*   Updated: 2022/09/24 20:36:12 by mmeziani         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 char	*merge(char *s1, char *s2, char *p)
@@ -50,6 +62,24 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!p)
 		return (NULL);
 	p = merge(s1, s2, p);
-	//free (s1);
+	free (s1);
 	return (p);
+}
+
+void	*ft_memcpy(void	*dst, const void *src, size_t n)
+{
+	const char	*s;
+	char		*d;
+
+	d = dst;
+	s = src;
+	if (!src && !dst)
+		return (NULL);
+	while (n--)
+	{
+		*d = *s;
+		d++;
+		s++;
+	}
+	return (dst);
 }

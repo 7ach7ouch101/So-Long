@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-SRCS = so_long.c parser.c tools.c tools2.c tools3.c\
+SRCS = so_long.c parser.c parser2.c tools.c tools2.c tools3.c\
 
 OBJS = $(SRCS:.c=.o)
 

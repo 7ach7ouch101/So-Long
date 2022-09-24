@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tools2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmeziani <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/24 20:36:16 by mmeziani          #+#    #+#             */
+/*   Updated: 2022/09/24 20:37:02 by mmeziani         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static int	words(const char *str, char c)
@@ -31,7 +43,7 @@ void	*freee(char **p)
 	return (NULL);
 }
 
-static	char	**fillarr(char **p, const char *s, char c)
+static	char	**fillarr(char **p, char *s, char c)
 {
 	int	j;
 	int	e;
@@ -47,7 +59,7 @@ static	char	**fillarr(char **p, const char *s, char c)
 			p[e] = (char *)malloc((j + 1) * sizeof(char));
 			if (!p)
 				return (freee(p));
-			memcpy(p[e], s, j);
+			ft_memcpy(p[e], s, j);
 			p[e][j] = '\0';
 			e++;
 			s = s + j;
@@ -59,7 +71,7 @@ static	char	**fillarr(char **p, const char *s, char c)
 	return (p);
 }
 
-char	**ft_split(const char *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**p;
 
@@ -69,5 +81,18 @@ char	**ft_split(const char *s, char c)
 	if (!p)
 		return (NULL);
 	p = fillarr(p, s, c);
+	free(s);
 	return (p);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t	i;
+
+	i = 0;
+	if (!(s1) ||!(s2))
+		return (0);
+	while ((s1[i] == s2[i] && (s1[i] != '\0' && s2[i] != '\0')))
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
