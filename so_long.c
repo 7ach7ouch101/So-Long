@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmeziani <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmeziani <mmeziani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 22:37:06 by mmeziani          #+#    #+#             */
-/*   Updated: 2022/09/23 23:28:32 by mmeziani         ###   ########.fr       */
+/*   Updated: 2022/09/25 20:31:12 by mmeziani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_print_movements(int movements)
 {
-	write(1, &movements, 1);
+	ft_putnbr(movements);
 	write(1, "\n", 1);
 	return ;
 }
@@ -48,12 +48,12 @@ void	move_player(game_info *game, int x, int y)
 	}
 }
 
-int	close_window(game_info *game, t_assets *ass)
+int	close_window(game_info *game/*, t_assets *ass*/)
 {
 	mlx_destroy_window(game->mlx, game->mlx_win);
-	freee(game->map);
-	free(ass);
-	free(game->mlx);
+	// freee(game->map);
+	// free(ass);
+	// free(game->mlx);
 	exit(0);
 }
 
@@ -63,7 +63,7 @@ int	test(int key, game_info *game, t_assets *ass)
 
 	i = 0;
 	if (key == 53)
-		close_window (game, ass);
+		close_window (game);
 	if (key == 13 || key == 0 || key == 1 || key == 2)
 	{
 		if (key == 13)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmeziani <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmeziani <mmeziani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 20:35:50 by mmeziani          #+#    #+#             */
-/*   Updated: 2022/09/24 20:36:12 by mmeziani         ###   ########.fr       */
+/*   Updated: 2022/09/25 20:17:06 by mmeziani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*merge(char *s1, char *s2, char *p)
 	return (p);
 }
 
-int	ft_strlen2(char *s)
+int	ft_strlen(char *s)
 {
 	int	i;
 
@@ -56,8 +56,8 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	if (!s1 || !s2)
 		exit(1);
-	a = ft_strlen2(s1);
-	b = ft_strlen2(s2);
+	a = ft_strlen(s1);
+	b = ft_strlen(s2);
 	p = malloc((a + b) + 1);
 	if (!p)
 		return (NULL);

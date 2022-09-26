@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmeziani <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmeziani <mmeziani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 20:32:20 by mmeziani          #+#    #+#             */
-/*   Updated: 2022/09/24 20:35:19 by mmeziani         ###   ########.fr       */
+/*   Updated: 2022/09/26 18:16:10 by mmeziani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,18 @@ char	**parse_map(char *map)
 
 	if (!check_extension(map))
 		return (0);
-	fd = open(map, O_RDWR);
-	tmp = malloc(sizeof(char));
-	mp = malloc(sizeof(char));
+	fd = open(map, O_RDONLY);
+	tmp = malloc(sizeof(char) + 1);
+	mp = malloc(sizeof(char) + 1);
 	tmp[1] = '\0';
 	if (fd < 0 || !(mp) || !(tmp))
 		return (0);
 	while (read(fd, tmp, 1))
 	{
 		mp = ft_strjoin(mp, tmp);
+		if ((!(mp[ft_strlen(mp)]) && mp[ft_strlen(mp) - 1] == '\n'
+				&& mp[ft_strlen(mp) - 2] == '\n') || mp[0] != '1')
+			return (0);
 		free(tmp);
 		tmp = malloc(sizeof(char));
 	}

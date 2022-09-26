@@ -1,10 +1,10 @@
 NAME = so_long
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 
 RM = rm -f
 
-SRCS = so_long.c parser.c parser2.c tools.c tools2.c tools3.c\
+SRCS = so_long.c parser.c parser2.c tools.c tools2.c tools3.c tools4.c\
 
 OBJS = $(SRCS:.c=.o)
 

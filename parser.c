@@ -6,7 +6,7 @@
 /*   By: mmeziani <mmeziani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 19:47:59 by mmeziani          #+#    #+#             */
-/*   Updated: 2022/09/24 20:29:37 by mmeziani         ###   ########.fr       */
+/*   Updated: 2022/09/25 20:16:11 by mmeziani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	valid_wall(game_info *game)
 	while (i < (h - 1))
 	{
 		if (game->map[i][0] == '1' &&
-			game->map[i][strlen(&game->map[i][0]) - 1] == '1')
+			game->map[i][ft_strlen(&game->map[i][0]) - 1] == '1')
 			i++;
 		else
 		{

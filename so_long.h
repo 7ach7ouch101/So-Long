@@ -2,9 +2,7 @@
 #define SO_LONG_H
 
 #include <mlx.h>
-#include <stdio.h>
 #include <unistd.h> 
-#include <string.h>
 #include <fcntl.h>
 #include <stdlib.h>
 
@@ -41,5 +39,7 @@ int     valid_char(game_info *game, int C, int E, int P);
 int	    ft_strcmp(const char *s1, const char *s2);
 void	*ft_memcpy(void	*dst, const void *src, size_t n);
 void	*freee(char **p);
+int	    ft_strlen(char *s);
+void	ft_putnbr(int n);
 
 #endif
