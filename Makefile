@@ -1,3 +1,4 @@
+# This is so stupid.
 NAME = so_long
 
 CFLAGS = -Wall -Wextra -Werror
