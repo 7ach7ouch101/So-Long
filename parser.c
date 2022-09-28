@@ -6,13 +6,13 @@
 /*   By: mmeziani <mmeziani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 19:47:59 by mmeziani          #+#    #+#             */
-/*   Updated: 2022/09/25 20:16:11 by mmeziani         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:56:40 by mmeziani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	valid_rec(game_info *game)
+int	valid_rec(t_game_info *game)
 {
 	int	i;
 	int	j;
@@ -58,7 +58,7 @@ int	valid_line(char *map)
 	return (0);
 }
 
-int	valid_wall(game_info *game)
+int	valid_wall(t_game_info *game)
 {
 	int	h;
 	int	i;
@@ -83,17 +83,18 @@ int	valid_wall(game_info *game)
 	return (0);
 }
 
-void	check(game_info *game, int E, int P, int C)
+void	check(t_game_info *game, int E, int P, int C)
 {
-	if (E > 1 || P > 1 || C == 0 || E == 0)
+	if (P != 1 || C == 0 || E == 0)
 	{
 		write(1, "Error", 5);
 		exit(0);
 	}
 	game->coins = C;
+	game->movements = 0;
 }
 
-int	valid_char(game_info *game, int C, int E, int P)
+void	valid_char(t_game_info *game, int C, int E, int P)
 {
 	int	i;
 	int	j;
@@ -113,11 +114,11 @@ int	valid_char(game_info *game, int C, int E, int P)
 			else if (game->map[i][j] == 'P')
 				P++;
 			else
-				return (write(1, "map contains diffrent component", 31), 0);
+				return (write(1, "MAP CONTAINS DIFFRENT COMPONENT", 31)
+					, exit(0));
 			j++;
 		}
 		i++;
 	}
 	check(game, E, P, C);
-	return (0);
 }

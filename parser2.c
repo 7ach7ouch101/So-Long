@@ -6,7 +6,7 @@
 /*   By: mmeziani <mmeziani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 20:32:20 by mmeziani          #+#    #+#             */
-/*   Updated: 2022/09/26 18:16:10 by mmeziani         ###   ########.fr       */
+/*   Updated: 2022/09/28 20:49:21 by mmeziani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,12 @@ char	**parse_map(char *map)
 	char	*tmp;
 	char	*mp;
 
-	if (!check_extension(map))
-		return (0);
 	fd = open(map, O_RDONLY);
 	tmp = malloc(sizeof(char) + 1);
 	mp = malloc(sizeof(char) + 1);
-	tmp[1] = '\0';
-	if (fd < 0 || !(mp) || !(tmp))
+	if (fd < 0 || !(mp) || !(tmp) || !check_extension(map))
 		return (0);
+	tmp[1] = '\0';
 	while (read(fd, tmp, 1))
 	{
 		mp = ft_strjoin(mp, tmp);
@@ -47,12 +45,14 @@ char	**parse_map(char *map)
 		free(tmp);
 		tmp = malloc(sizeof(char));
 	}
+	if (mp[ft_strlen(mp) - 1] != '1' || !(tmp))
+		return (0);
 	free(tmp);
 	close(fd);
 	return (ft_split(mp, '\n'));
 }
 
-void	valid_map(game_info *game)
+void	valid_map(t_game_info *game)
 {
 	int	c;
 	int	e;

@@ -6,7 +6,7 @@
 /*   By: mmeziani <mmeziani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 22:37:06 by mmeziani          #+#    #+#             */
-/*   Updated: 2022/09/25 20:31:12 by mmeziani         ###   ########.fr       */
+/*   Updated: 2022/09/28 17:59:35 by mmeziani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_print_movements(int movements)
 	return ;
 }
 
-void	move_player(game_info *game, int x, int y)
+void	move_player(t_game_info *game, int x, int y)
 {
 	int	i;
 	int	j;
@@ -48,18 +48,18 @@ void	move_player(game_info *game, int x, int y)
 	}
 }
 
-int	close_window(game_info *game/*, t_assets *ass*/)
+int	close_window(t_game_info *game)
 {
 	mlx_destroy_window(game->mlx, game->mlx_win);
-	// freee(game->map);
-	// free(ass);
-	// free(game->mlx);
+	freee(game->map);
+	free(game->mlx);
 	exit(0);
 }
 
-int	test(int key, game_info *game, t_assets *ass)
+int	test(int key, t_game_info *game)
 {
-	int	i;
+	int			i;
+	t_assets	*ass;
 
 	i = 0;
 	if (key == 53)
@@ -77,21 +77,26 @@ int	test(int key, game_info *game, t_assets *ass)
 	}
 	mlx_clear_window(game->mlx, game->mlx_win);
 	ass = malloc(sizeof(t_assets));
+	if (!(ass))
+		exit(0);
 	loading (game->mlx, ass);
 	rendreing (game, ass);
+	free(ass);
 	return (0);
 }
 
 int	main(int ac, char **av)
 {
-	game_info	game;
+	t_game_info	game;
 	t_assets	*ass;
 
 	ass = malloc(sizeof(t_assets));
-	game.movements = 0;
+	if (!(ass))
+		return (0);
 	if (ac == 2)
 	{
-		if ( !(game.map = parse_map(av[1])))
+		game.map = parse_map(av[1]);
+		if (!(game.map))
 			return (write (1, "Error\n", 7));
 		valid_map(&game);
 		game.mlx = mlx_init();

@@ -6,7 +6,7 @@
 /*   By: mmeziani <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 20:37:14 by mmeziani          #+#    #+#             */
-/*   Updated: 2022/09/24 21:13:23 by mmeziani         ###   ########.fr       */
+/*   Updated: 2022/09/26 22:01:07 by mmeziani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,19 @@ void	loading(void *mlx, t_assets *ass)
 			&img_width, &img_height);
 	ass->floor = mlx_xpm_file_to_image(mlx, "./assets/floor.xpm",
 			&img_width, &img_height);
+	if (!ass->coin || !ass->door || !ass->floor || !ass->player || !ass->wall)
+	{
+		write(1, "FILE NOT FOUND", 14);
+		exit(0);
+	}
 }
 
-void	put_img(game_info *game, char *ptr, int i, int j)
+void	put_img(t_game_info *game, char *ptr, int i, int j)
 {
 	mlx_put_image_to_window(game->mlx, game->mlx_win, ptr, j * 60, i * 60);
 }
 
-void	rendreing(game_info *game, t_assets *ass)
+void	rendreing(t_game_info *game, t_assets *ass)
 {
 	int	i;
 	int	j;
